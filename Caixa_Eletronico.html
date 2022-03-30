@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E o banco hein?</title>
+	<script>
+		var saldo = 10000.50; //Float 1.36
+		var nome = prompt("Ola, informe seu nome");
+        function funcaoSaudacaoaousuario() {
+			alert("Ola, " + nome + ", \nÉ um prazer te ver por aqui!");
+		}
+
+		function inicio() {
+            funcaoSaudacaoaousuario();
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo 2.) Extrato 3.) Saque 4.) Depósito\n 5.) Transferência 6.) Sair'));
+			switch(escolha) {
+            case 1:
+            ver_saldo();
+			break;
+			
+            case 2:
+            ver_extrato();
+			break;
+			
+            case 3:
+            fazer_saque();
+			break;
+			
+			
+            case 4:
+            fazer_deposito();
+			break;
+			
+			
+            case 5:
+            fazer_transferencia();
+			break;
+			
+			
+            case 6:
+            sair();
+			break;
+
+			default:
+            erro();
+			}
+		
+		}
+
+		
+
+		function ver_saldo() {
+			var senha = parseInt(prompt('Informe sua senha de 4 digitos'));
+			if (senha === 3589){
+				alert('Seu saldo atual é: ' + saldo);
+			inicio();
+			}
+			else {
+				alert('Senha incorreta');
+				ver_saldo();
+			}
+			
+		}
+
+		function ver_extrato() {
+			var senha = parseInt(prompt('Informe sua senha de 4 digitos'));
+			if (senha === 3589){
+				alert('Seu extrato dos ultimos 30 dias é:\n 05/03/2022, Pagamento a vista: R$ 180,00, Loja Amazon;\n 12/03/2022, Pagamento a vista: R$ 35,00, pizarria ifome;\n 17/03/2022, Pagamento a vista: R$ 249,99, PlaystationStore;\n 20/03/2022, Deposito PIX, R$ 350,00, CONTA BRADESCO;\n 29/03/2022, Transferência PIX, R$ 550,00, CONTA NUBANK.');
+			inicio();
+			}
+			else {
+				alert('Senha incorreta');
+				ver_extrato();
+			}
+			
+		}
+
+		function fazer_saque() {
+			var senha = parseInt(prompt('Informe sua senha de 4 digitos'));
+			
+			if (senha === 3589){
+				var saque = parseFloat(prompt('Qual o valor para saque?'));
+			
+			}
+			else {
+				alert('Senha incorreta');
+				fazer_saque();
+			}
+			
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			// Saque maior que saldo	
+            } else if (saque > saldo) {
+                alert("Operação não autorizada");
+                fazer_saque();
+            }
+			// Saque menor ou igual a zero 
+			else if (saque <= 0) {
+                alert("Operação não autorizada");
+                fazer_saque();                      
+			} else {
+				saldo -= saque;
+				ver_saldo();
+				inicio();
+			}
+			
+			
+		}
+
+		function fazer_deposito() { // Deposito
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				ver_saldo();
+			}
+			// Valor menor ou igual a zero
+			if (deposito <= 0) {
+				alert('Operação não autorizada');
+				fazer_deposito();
+			}
+		}
+
+		function fazer_transferencia() { // Transferência
+			var senha = parseInt(prompt('Informe sua senha de 4 digitos'));
+			
+			if (senha === 3589){
+				var conta_transferencia = parseFloat(prompt('Qual o número da conta que será feita a transferência?'));
+			var valor_transferencia = parseFloat(prompt('Qual valor a ser transferido?'));
+			}
+			else {
+				alert('Senha incorreta');
+				fazer_transferencia();
+			}
+			// Not a Number
+			if (isNaN(conta_transferencia) || conta_transferencia === '') {
+				alert('Por favor, informe um número:');
+				fazer_transferencia();
+			}
+			
+			// Valor maior que saldo
+			if (valor_transferencia > saldo) {
+				alert('Operação não autorizada');
+				fazer_transferencia();
+			}
+			// Valor menor ou igual a zero
+			else if (valor_transferencia <= 0) {
+				alert('Operação não autorizada');
+				fazer_transferencia();
+			}
+			else {
+				saldo -= valor_transferencia;
+				ver_saldo();
+			}
+			
+
+		}
+        
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+		function funcaoDespedida() {
+var despedida = ", foi um prazer ter você por aqui!"
+alert(nome + despedida);
+}
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				funcaoDespedida();
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+	
+		inicio();
+        
+</script>
+    
+</head>
+<body>  
+</body>
+</html>
